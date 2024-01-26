@@ -1,6 +1,8 @@
 <script lang="ts">
   import InputText from './form/InputText.svelte'
   import Textarea from './form/Textarea.svelte'
+  import { createTask } from '../services/tasks'
+  import { link, navigate } from 'svelte-routing'
 
   let title = ''
   let description = ''
@@ -10,7 +12,8 @@
     if (!form.checkValidity()) {
       return
     }
-    console.log({ title, description })
+    await createTask(title, description)
+    navigate('/my-tasks')
   }
 
 </script>
@@ -40,7 +43,10 @@
       </Textarea>
     </div>
     <div class="flex justify-between">
-      <a class="inline-block px-2 py-1 rounded bg-red-600 text-white" href="/my-tasks">Cancelar</a>
+      <a
+        use:link
+        class="inline-block px-2 py-1 rounded bg-red-600 text-white"
+        href="/my-tasks">Cancelar</a>
       <button
         type="submit"
         class="inline-block px-2 py-1 rounded bg-ta-green text-white"
