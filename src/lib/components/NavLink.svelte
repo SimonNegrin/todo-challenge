@@ -9,8 +9,11 @@
   export let href: string
 
   let anchorEl!: HTMLAnchorElement
+  let isActive = false
 
-  $: if (anchorEl && $location.pathname.startsWith(href)) {
+  $: isActive = $location.pathname.startsWith(href)
+  
+  $: if (anchorEl && isActive) {
     setNavigationLink(anchorEl)
   }
 
@@ -18,7 +21,8 @@
 
 <a
   bind:this={anchorEl}
-  class="flex items-center shrink-0"
+  class="flex items-center shrink-0 transition-colors"
+  class:text-ta-green={isActive}
   use:link
   {href}
   >

@@ -14,10 +14,10 @@
 </script>
 
 <Router>
-  <div class="h-lvh bg-fuchsia-200">
+  <div class="h-svh bg-green-50 flex flex-col">
     <Header />
     <Navigation />
-    <div>
+    <div class="grow overflow-auto">
       <Route path="/my-data" component={MyData} />
       <Route path="/my-tasks" component={MyTasks} />
       <Route path="/my-returns" component={MyReturns} />

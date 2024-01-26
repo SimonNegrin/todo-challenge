@@ -4,7 +4,11 @@ import scrollbarHide from 'tailwind-scrollbar-hide'
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "ta-green": "#639605"
+      }
+    },
   },
   plugins: [
     scrollbarHide,

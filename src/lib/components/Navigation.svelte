@@ -31,6 +31,6 @@
   <NavLink href="/my-best-friends">Mis mejores amigos</NavLink>
   <div
     bind:this={underlineEl}
-    class="absolute bottom-0 bg-blue-500 rounded-t h-1 transition-all duration-100 touch-none pointer-events-none"
+    class="absolute bottom-0 bg-ta-green rounded-t h-1 transition-all duration-100 touch-none pointer-events-none"
   ></div>
 </nav>
