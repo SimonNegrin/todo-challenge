@@ -16,13 +16,13 @@
     const width = el.offsetWidth
     underlineEl.style.setProperty('width', `${width}px`)
     underlineEl.style.setProperty('left', `${left}px`)
-    el.scrollIntoView({ behavior: 'smooth', inline: 'nearest' })
+    el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
   })
 
 </script>
 
 <nav
-  class="relative h-12 px-2 w-full bg-white shadow overflow-auto flex gap-8 items-center scrollbar-hide"
+  class="relative h-12 shrink-0 px-2 w-full bg-white shadow overflow-auto flex gap-8 items-center scrollbar-hide"
   >
   <NavLink href="/my-data">Mis datos</NavLink>
   <NavLink href="/my-tasks">Mis tareas</NavLink>

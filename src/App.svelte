@@ -14,7 +14,7 @@
 </script>
 
 <Router>
-  <div class="h-svh bg-green-50 flex flex-col">
+  <div class="h-svh bg-gray-100 flex flex-col">
     <Header />
     <Navigation />
     <div class="grow overflow-auto">

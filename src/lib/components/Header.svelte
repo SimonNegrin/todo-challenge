@@ -5,7 +5,7 @@
   import UserIcon from './icons/UserIcon.svelte'
 
 </script>
-<header class="bg-white h-12 border-b flex items-center gap-2 p-2">
+<header class="bg-white h-12 shrink-0 border-b flex items-center gap-2 p-2">
   <MenuIcon />
   <SearchIcon />
   <div class="grow flex justify-center">
