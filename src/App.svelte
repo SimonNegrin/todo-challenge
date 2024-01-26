@@ -19,12 +19,12 @@
     <Navigation />
     <div class="grow overflow-auto">
       <Route path="/my-data" component={MyData} />
-      <Route path="/my-tasks" component={MyTasks} />
+      <Route path="/my-tasks/*" component={MyTasks} />
       <Route path="/my-returns" component={MyReturns} />
       <Route path="/my-comunications" component={MyComunications} />
       <Route path="/my-best-friends" component={MyBestFriends} />
       <Route path="*">
-        <Redirect to="/my-data" />
+        <Redirect to="/my-tasks" />
       </Route>
     </div>
   </div>
