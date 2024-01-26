@@ -9,7 +9,7 @@
   import MyReturns from './lib/pages/MyReturns.svelte'
   import MyComunications from './lib/pages/MyComunications.svelte'
   import MyBestFriends from './lib/pages/MyBestFriends.svelte'
-    import Redirect from './lib/components/Redirect.svelte';
+  import Redirect from './lib/components/Redirect.svelte'
 
 </script>
 
