@@ -21,6 +21,15 @@ export async function createTask(title: string, description: string): Promise<Ta
   return task
 }
 
+export async function deleteTask(taskId: number): Promise<void> {
+  const tasks = await getAllTasks()
+  const index = tasks.findIndex(task => task.id === taskId)
+  if (index === -1) {
+    throw new Error(`Task with id ${taskId} not found`)
+  }
+  tasks.splice(index, 1)
+}
+
 async function getAllTasks(): Promise<Task[]> {
   if (!tasks) {
     const response = await fetch(import.meta.env.VITE_TASKS_API)

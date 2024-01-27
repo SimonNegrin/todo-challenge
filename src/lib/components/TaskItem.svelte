@@ -1,8 +1,18 @@
 <script lang="ts">
   import type { Task } from '../../vite-env'
   import TrashIcon from './icons/TrashIcon.svelte'
+  import { deleteTask } from '../services/tasks'
+  import { createEventDispatcher } from 'svelte'
+
+  const dispatch = createEventDispatcher()
 
   export let task: Task
+
+  async function onRemove(): Promise<void> {
+    if (!confirm('¿Estás seguro de eliminar esta tarea?')) return
+    await deleteTask(task.id)
+    dispatch('removed', task)
+  }
 
 </script>
 
@@ -17,7 +27,7 @@
       {/if}
     </p>
   </div>
-  <button type="button">
+  <button type="button" on:click={onRemove}>
     <TrashIcon />
   </button>
 </div>

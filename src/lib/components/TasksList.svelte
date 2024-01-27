@@ -21,7 +21,7 @@
     try {
       const page = await getTasks(skip, take)
       hasMore = page.length === take
-      tasks = [...tasks, ...page]
+      tasks = tasks.concat(page)
     } finally {
       isLoading = false
     }
@@ -30,6 +30,10 @@
   async function loadMore(): Promise<void> {
     skip += take
     await loadTasks()
+  }
+
+  function onTaskRemoved({ detail }: CustomEvent<Task>): void {
+    tasks = tasks.filter(task => task.id !== detail.id)
   }
 
 </script>
@@ -45,7 +49,10 @@
 
   <div class="p-4 h-full overflow-auto">
     {#each tasks as task}
-      <TaskItem {task} />
+      <TaskItem
+        {task}
+        on:removed={onTaskRemoved}
+        />
     {/each}
 
     {#if isLoading}
