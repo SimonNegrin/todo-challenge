@@ -81,7 +81,7 @@
       <div class="flex justify-center items-center gap-4 my-4 text-ta-green">
         <Loading /> Cargando tareas...
       </div>
-    {:else if hasMore && tasks.length > 0}
+    {:else if hasMore}
       <button
         type="button"
         class="bg-ta-green text-white rounded-lg shadow p-2 w-full"
