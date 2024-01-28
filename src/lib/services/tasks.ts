@@ -33,6 +33,9 @@ export async function deleteTask(taskId: number): Promise<void> {
 async function getAllTasks(): Promise<Task[]> {
   if (!tasks) {
     const response = await fetch(import.meta.env.VITE_TASKS_API)
+    if (!response.ok) {
+        throw new Error(`Error fetching tasks: ${response.statusText}`)
+    }
     tasks = await response.json() as Task[]
     for (const task of tasks) {
       task.description = 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus tenetur veritatis accusamus fugiat saepe laboriosam quam, nobis quae odio, eligendi odit deserunt soluta sunt itaque veniam distinctio repudiandae? Doloremque, deserunt.'

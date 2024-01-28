@@ -5,6 +5,7 @@
   import { getTasks } from '../services/tasks'
   import Loading from '../components/Loading.svelte'
   import { link } from 'svelte-routing'
+  import ErrorMessage from './ErrorMessage.svelte'
   
   const take = 3
 
@@ -12,6 +13,7 @@
   let tasks: Task[] = []
   let isLoading = false
   let hasMore = true
+  let errorMessage = ''
 
   onMount(loadTasks)
 
@@ -22,6 +24,12 @@
       const page = await getTasks(skip, take)
       hasMore = page.length === take
       tasks = tasks.concat(page)
+    } catch (error) {
+      if (error instanceof Error) {
+        errorMessage = error.message
+      } else {
+        errorMessage = 'Error desconocido'
+      }
     } finally {
       isLoading = false
     }
@@ -48,6 +56,20 @@
   </a>
 
   <div class="p-4 h-full overflow-y-auto overflow-x-hidden">
+
+    {#if errorMessage && !isLoading}
+      <ErrorMessage>
+        <div class="mb-2">{errorMessage}</div>
+        <button
+          type="button"
+          class="bg-orange-300 text-white rounded-lg shadow px-2 py-1"
+          on:click={loadTasks}
+          >
+          Reintentar
+        </button>
+      </ErrorMessage>
+    {/if}
+
     {#each tasks as task (task.id)}
       <TaskItem
         {task}
@@ -59,7 +81,7 @@
       <div class="flex justify-center items-center gap-4 my-4 text-ta-green">
         <Loading /> Cargando tareas...
       </div>
-    {:else if hasMore}
+    {:else if hasMore && tasks.length > 0}
       <button
         type="button"
         class="bg-ta-green text-white rounded-lg shadow p-2 w-full"

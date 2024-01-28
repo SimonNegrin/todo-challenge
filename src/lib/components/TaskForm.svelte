@@ -3,22 +3,42 @@
   import Textarea from './form/Textarea.svelte'
   import { createTask } from '../services/tasks'
   import { link, navigate } from 'svelte-routing'
+  import ErrorMessage from './ErrorMessage.svelte'
 
+  let isCreating = false
   let title = ''
   let description = ''
+  let errorMessage = ''
 
   async function onSubmit(event: SubmitEvent): Promise<void> {
     const form = event.target as HTMLFormElement
     if (!form.checkValidity()) {
       return
     }
-    await createTask(title, description)
-    navigate('/my-tasks')
+    if (isCreating) return
+    isCreating = true
+    try {
+      await createTask(title, description)
+      navigate('/my-tasks')
+    } catch (error) {
+      if (error instanceof Error) {
+        errorMessage = error.message
+      } else {
+        errorMessage = 'Error desconocido'
+      }
+    } finally {
+      isCreating = false
+    }
   }
 
 </script>
 
 <div class="p-4">
+
+  {#if errorMessage}
+    <ErrorMessage>{errorMessage}</ErrorMessage>
+  {/if}
+
   <form
     on:submit|preventDefault={onSubmit}
     novalidate
@@ -49,8 +69,9 @@
         href="/my-tasks">Cancelar</a>
       <button
         type="submit"
-        class="inline-block px-2 py-1 rounded bg-ta-green text-white"
-        >Guardar</button>
+        disabled={isCreating}
+        class="inline-block px-2 py-1 rounded bg-ta-green text-white disabled:opacity-50"
+        >{isCreating ? 'Guardando...' : 'Guardar'}</button>
     </div>
   </form>
 </div>

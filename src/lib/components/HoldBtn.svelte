@@ -73,7 +73,7 @@
     left: 0;
     content: "";
     border-radius: calc(var(--size) / 2) 0 0 calc(var(--size) / 2);
-    background-color: red;
+    background-color: #717171;
     transform-origin: 100% 50%;
     transform: rotate(180deg);
     opacity: 0.5;
