@@ -21,7 +21,7 @@
 
 <a
   bind:this={anchorEl}
-  class="flex items-center shrink-0 transition-colors"
+  class="flex items-center shrink-0 transition-colors px-1 py-2"
   class:text-ta-green={isActive}
   use:link
   {href}

@@ -16,13 +16,20 @@
     const width = el.offsetWidth
     underlineEl.style.setProperty('width', `${width}px`)
     underlineEl.style.setProperty('left', `${left}px`)
-    el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+    // This is a hack to make sure the element is rendered before scrolling
+    // into view. Otherwise, the element will be scrolled into view before
+    setTimeout(() => {
+      el.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'nearest'
+      })
+    })
   })
 
 </script>
 
 <nav
-  class="relative h-12 shrink-0 px-2 w-full bg-white shadow overflow-auto flex gap-8 items-center scrollbar-hide z-10"
+  class="relative h-12 shrink-0 px-2 w-full bg-white shadow overflow-auto scrollbar-hide flex gap-8 items-center z-10"
   >
   <NavLink href="/my-data">Mis datos</NavLink>
   <NavLink href="/my-tasks">Mis tareas</NavLink>
