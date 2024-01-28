@@ -3,6 +3,7 @@
   import TrashIcon from './icons/TrashIcon.svelte'
   import { deleteTask } from '../services/tasks'
   import { createEventDispatcher } from 'svelte'
+  import { fly, slide } from 'svelte/transition'
 
   const dispatch = createEventDispatcher()
 
@@ -16,18 +17,20 @@
 
 </script>
 
-<div class="bg-white rounded-lg shadow mb-4 p-4 flex items-center">
-  <div class="grow">
-    <h3 class="text-lg text-gray-700">{task.title}</h3>
-    <p class="text-sm text-gray-500">
-      {#if 'description' in task}
-        {task.description}
-      {:else}
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus tenetur veritatis accusamus fugiat saepe laboriosam quam, nobis quae odio, eligendi odit deserunt soluta sunt itaque veniam distinctio repudiandae? Doloremque, deserunt.
-      {/if}
-    </p>
+<div
+  class="mb-4"
+  out:slide={{ delay: 200 }}
+  >
+  <div
+    class="bg-white rounded-lg shadow p-4 flex items-center"
+    out:fly={{ x: -100, duration: 200 }}
+    >
+    <div class="grow">
+      <h3 class="text-lg text-gray-700">{task.title}</h3>
+      <p class="text-sm text-gray-500">{task.description}</p>
+    </div>
+    <button type="button" on:click={onRemove}>
+      <TrashIcon />
+    </button>
   </div>
-  <button type="button" on:click={onRemove}>
-    <TrashIcon />
-  </button>
 </div>

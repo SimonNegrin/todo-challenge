@@ -48,7 +48,7 @@
   </a>
 
   <div class="p-4 h-full overflow-auto">
-    {#each tasks as task}
+    {#each tasks as task (task.id)}
       <TaskItem
         {task}
         on:removed={onTaskRemoved}
