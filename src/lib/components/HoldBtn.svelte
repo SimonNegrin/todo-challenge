@@ -10,7 +10,6 @@
   let isHolding = false;
 
   function onPointerdown(event: PointerEvent): void {
-    if (isHolding) return
     isHolding = true
     clear()
     const btn = event.currentTarget as HTMLButtonElement
