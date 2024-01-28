@@ -22,7 +22,7 @@
 </script>
 
 <nav
-  class="relative h-12 shrink-0 px-2 w-full bg-white shadow overflow-auto flex gap-8 items-center scrollbar-hide"
+  class="relative h-12 shrink-0 px-2 w-full bg-white shadow overflow-auto flex gap-8 items-center scrollbar-hide z-10"
   >
   <NavLink href="/my-data">Mis datos</NavLink>
   <NavLink href="/my-tasks">Mis tareas</NavLink>

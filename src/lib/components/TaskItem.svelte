@@ -4,13 +4,13 @@
   import { deleteTask } from '../services/tasks'
   import { createEventDispatcher } from 'svelte'
   import { fly, slide } from 'svelte/transition'
+    import HoldBtn from './HoldBtn.svelte';
 
   const dispatch = createEventDispatcher()
 
   export let task: Task
 
   async function onRemove(): Promise<void> {
-    if (!confirm('¿Estás seguro de eliminar esta tarea?')) return
     await deleteTask(task.id)
     dispatch('removed', task)
   }
@@ -29,8 +29,8 @@
       <h3 class="text-lg text-gray-700">{task.title}</h3>
       <p class="text-sm text-gray-500">{task.description}</p>
     </div>
-    <button type="button" on:click={onRemove}>
+    <HoldBtn on:hold={onRemove}>
       <TrashIcon />
-    </button>
+    </HoldBtn>
   </div>
 </div>

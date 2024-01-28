@@ -42,12 +42,12 @@
   <a
     use:link
     href="/my-tasks/create"
-    class="bg-ta-green text-white shadow p-2 w-12 h-12 rounded-full text-center absolute bottom-16 right-4 flex justify-center items-center"
+    class="bg-ta-green text-white shadow p-2 w-12 h-12 rounded-full text-center absolute z-10 bottom-16 right-4 flex justify-center items-center"
     >
     ✚
   </a>
 
-  <div class="p-4 h-full overflow-auto">
+  <div class="p-4 h-full overflow-y-auto overflow-x-hidden">
     {#each tasks as task (task.id)}
       <TaskItem
         {task}
