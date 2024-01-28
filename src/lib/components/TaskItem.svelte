@@ -30,7 +30,9 @@
       <p class="text-sm text-gray-500">{task.description}</p>
     </div>
     <HoldBtn on:hold={onRemove}>
-      <TrashIcon />
+      <div class="p-2">
+        <TrashIcon />
+      </div>
     </HoldBtn>
   </div>
 </div>

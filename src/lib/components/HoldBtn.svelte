@@ -10,7 +10,10 @@
   let isHolding = false;
 
   function onPointerdown(event: PointerEvent): void {
-    const btn = event.target as HTMLButtonElement
+    if (isHolding) return
+    isHolding = true
+    clear()
+    const btn = event.currentTarget as HTMLButtonElement
     btn.setPointerCapture(event.pointerId)
     isHolding = true
     timeout = setTimeout(() => {
@@ -20,20 +23,25 @@
   }
 
   function onPointerup(event: PointerEvent): void {
-    const btn = event.target as HTMLButtonElement
+    const btn = event.currentTarget as HTMLButtonElement
     btn.releasePointerCapture(event.pointerId)
     isHolding = false
+    clear()
+  }
+
+  function clear(): void {
     if (timeout) {
       clearTimeout(timeout)
       timeout = null
     }
   }
+
 </script>
 
 <button
   type="button"
-  class="relative"
-  on:pointerdown|preventDefault={onPointerdown}
+  class="relative touch-none"
+  on:pointerdown={onPointerdown}
   on:pointerup={onPointerup}
   on:contextmenu|preventDefault
 >
